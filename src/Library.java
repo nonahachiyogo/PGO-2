@@ -35,5 +35,23 @@ public class Library {
         }
         return count;
     }
+    public void borrowBook(String title, Reader reader){
+        Book book = findBookByTitle(title);
+
+        if (book != null && book.isAvailable()) {
+            book.borrow();
+            reader.increaseBorrowedCount();
+        } else {
+            System.out.println("Book not available.");
+        }
+    }
+    public void returnBook(String title, Reader reader){
+        Book book = findBookByTitle(title);
+
+        if (book != null) {
+            book.returnBook();
+            reader.decreaseBorrowedCount();
+        }
+    }
 
 }
